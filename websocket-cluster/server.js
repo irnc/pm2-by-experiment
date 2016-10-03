@@ -1,5 +1,6 @@
 const io = require('socket.io')();
-const port = process.env.PORT || '3000';
+const basePort = process.env.PORT || '3000';
+const port = Number(basePort) + Number(process.env.NODE_APP_INSTANCE);
 
 io.on('connection', function(client){
   console.log('connection event');

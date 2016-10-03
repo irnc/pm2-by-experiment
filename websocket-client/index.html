@@ -1,7 +1,12 @@
 <base href="http://localhost:3000" />
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io('http://localhost:3000');
+  function getSocketPort(location) {
+    const matched = location.search.match(/^\?socket=(\d+)/);
+    return matched ? matched[1] : 3000;
+  }
+
+  var socket = io(`http://localhost:${getSocketPort(location)}`);
   socket.on('connect', function(){});
   socket.on('event', function(data){});
   socket.on('disconnect', function(){});
